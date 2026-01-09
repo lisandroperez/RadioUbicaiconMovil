@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 // --- ENUMS PARA NAVEGACIÓN ---
@@ -27,7 +26,7 @@ const Landing: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate })
             MANUAL_TÉCNICO
           </button>
           <a href="https://tacticalradioyb.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-orange-500 border border-orange-500/30 px-4 py-1.5 hover:bg-orange-600 hover:text-white transition-all">
-            ENTRAR_APP >
+            ENTRAR_APP &gt;
           </a>
         </div>
       </div>
