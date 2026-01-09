@@ -1,0 +1,7 @@
+{
+  "name": "Radio Ubicación Móvil - Hub Táctico",
+  "description": "Plataforma centralizada para el acceso al manual operacional, guía rápida y aplicación de radio ubicación táctica para brigadas de emergencia.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
