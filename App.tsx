@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 
 // --- ENUMS PARA NAVEGACIÓN ---
@@ -7,7 +8,7 @@ export enum View {
   GUIDE = 'guide'
 }
 
-// --- COMPONENTE LANDING (INICIO) ---
+// --- COMPONENTE LANDING (PÁGINA PRINCIPAL) ---
 const Landing: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate }) => (
   <div className="relative min-h-screen bg-[#0e0a07] text-white overflow-hidden selection:bg-orange-500/30">
     <div className="scanline"></div>
@@ -81,7 +82,7 @@ const Manual: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate }) 
       </button>
     </div>
 
-    <header className="mb-16">
+    <header className="mb-16 animate__animated animate__fadeIn">
       <div className="flex items-center gap-3 mb-4">
         <div className="w-8 h-1 bg-orange-500"></div>
         <p className="mono text-orange-500 font-bold tracking-[0.4em] text-[9px] uppercase">OPERATIONAL_MANUAL_v3.2</p>
@@ -120,14 +121,11 @@ const Manual: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate }) 
       </section>
     </div>
 
-    <section className="mb-16 space-y-6">
-      <div className="flex items-center gap-3">
-        <span className="bg-red-600 text-white w-7 h-7 flex items-center justify-center font-black text-sm">03</span>
-        <h2 className="text-3xl font-black uppercase text-red-500 tracking-tighter">Emergencia SOS</h2>
-      </div>
+    <section className="mb-16 space-y-6 text-center md:text-left">
+      <h2 className="text-3xl font-black uppercase text-red-500 tracking-tighter">Emergencia SOS</h2>
       <div className="bg-red-600/5 border border-red-600 p-6">
         <p className="text-xs text-gray-400">
-          El botón SOS genera una alerta que prepara un SMS con coordenadas exactas. <span className="text-white">Funciona incluso sin internet (vía GSM).</span>
+          El botón SOS genera una alerta que prepara un SMS con coordenadas exactas. <span className="text-white font-bold">Funciona sin internet vía red celular.</span>
         </p>
       </div>
     </section>
@@ -138,37 +136,36 @@ const Manual: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate }) 
   </div>
 );
 
-// --- COMPONENTE GUÍA RÁPIDA (IMPRESIÓN) ---
+// --- COMPONENTE GUÍA RÁPIDA (PARA IMPRIMIR) ---
 const QuickGuide: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate }) => (
   <div className="min-h-screen bg-white text-black p-8 md:p-12 max-w-4xl mx-auto selection:bg-black selection:text-white">
     <div className="border-[4px] border-black p-4 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <div>
         <h1 className="text-3xl font-black uppercase tracking-tighter">GUÍA RÁPIDA</h1>
-        <p className="text-sm font-bold">SISTEMA: RADIO UBICACIÓN MÓVIL (v3.2)</p>
+        <p className="text-sm font-bold uppercase">Sistema: Radio Ubicación Móvil</p>
+      </div>
+      <div className="text-right font-bold text-[10px] mono uppercase no-print">
+        <button onClick={() => window.print()} className="bg-black text-white px-4 py-1 hover:bg-gray-800 transition-colors">Imprimir</button>
       </div>
     </div>
 
-    <div className="space-y-6">
-      <div className="border-b-2 border-black pb-4">
-        <h3 className="font-black text-lg uppercase">1. IDENTIFICACIÓN</h3>
-        <p className="text-sm">Use nombres cortos (Ej: ALFA-1). Mayúsculas preferidas.</p>
-      </div>
-      <div className="border-b-2 border-black pb-4">
-        <h3 className="font-black text-lg uppercase">2. TRANSMISIÓN</h3>
-        <p className="text-sm">Mantenga presionado el círculo central. Suelte para escuchar.</p>
-      </div>
-      <div className="border-b-2 border-black pb-4">
-        <h3 className="font-black text-lg uppercase">3. ALERTA SOS</h3>
-        <p className="text-sm">Toque el triángulo rojo en emergencias. Siga las instrucciones del SMS.</p>
-      </div>
+    <div className="space-y-8">
+      {[
+        { n: '01', t: 'IDENTIFICACIÓN', d: 'Use nombres cortos (Ej: ALFA-1). Mayúsculas preferidas.' },
+        { n: '02', t: 'TRANSMISIÓN (PTT)', d: 'Mantenga presionado el círculo central para hablar. Suelte para escuchar.' },
+        { n: '03', t: 'ALERTA SOS', d: 'Toque el triángulo rojo en emergencias. Siga las instrucciones del SMS.' },
+        { n: '04', t: 'RESILIENCIA', d: 'Si no hay red, la app guardará los mensajes localmente.' }
+      ].map(item => (
+        <div key={item.n} className="border-b-2 border-black pb-4">
+          <h3 className="font-black text-xl uppercase mb-1">{item.n}. {item.t}</h3>
+          <p className="text-sm leading-tight text-gray-700">{item.d}</p>
+        </div>
+      ))}
     </div>
 
-    <div className="mt-8 no-print flex gap-4">
-      <button onClick={() => window.print()} className="bg-black text-white px-8 py-3 font-bold hover:bg-gray-800 transition-colors">
-        IMPRIMIR
-      </button>
-      <button onClick={() => onNavigate(View.HOME)} className="border-2 border-black px-8 py-3 font-bold hover:bg-black hover:text-white transition-all">
-        VOLVER
+    <div className="mt-12 no-print flex gap-4">
+      <button onClick={() => onNavigate(View.HOME)} className="border-2 border-black px-8 py-3 font-black text-xs uppercase hover:bg-black hover:text-white transition-all">
+        VOLVER AL HUB
       </button>
     </div>
   </div>
