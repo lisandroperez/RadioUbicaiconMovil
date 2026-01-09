@@ -81,7 +81,7 @@ const QuickGuide: React.FC<QuickGuideProps> = ({ onNavigate }) => {
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-lg uppercase tracking-tight">{item.title}</h3>
-              <p className="text-sm leading-snug">{item.desc}</p>
+              <p className="text-sm leadin g-snug">{item.desc}</p>
               <p className="text-[11px] font-bold italic mt-1 opacity-80">{item.tip}</p>
             </div>
           </div>
