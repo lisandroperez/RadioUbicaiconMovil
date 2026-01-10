@@ -41,7 +41,7 @@ const Landing: React.FC<{ onNavigate: (view: View) => void }> = ({ onNavigate })
           RADIO<br />UBICACIÓN<br />MÓVIL
         </h1>
         <p className="text-white text-xl md:text-3xl font-bold tracking-tight uppercase mb-16 opacity-90">
-          VOZ Y GPS CUANDO LOS DATOS FALLAN.
+          Al servicio de la emergencia.
         </p>
         <div className="flex justify-center">
           <a href="https://tacticalradioyb.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-orange-600 hover:bg-orange-700 transition-colors px-16 py-6 rounded-sm font-black text-sm md:text-lg tracking-[0.15em] uppercase text-white shadow-2xl">
